@@ -7,10 +7,12 @@ In the .dockerignore file i decided to add all the .gitignore files and to add t
 After doing that i decided to EXCLUDE the node_modules file from the .dockerignore file so it will be easier and faster for developers to dockerize their applications if the would like to.
 I do want to mention that i have changed the package.json dependencies because there were unused dependencies and also the typescript were in the dependencies and not the devDependencies which was costing alot of storage for the image.
 
-Now for the Dockerfile. Was thinking about using bitnami node image but decided the regular one becuase it is not a complex application. chose lts-slim tag for stabilty and storage reasons.
+Now for the Dockerfile. Was thinking about using bitnami node image but decided the regular one becuase it is not a complex application. chose lts-alpine tag for minimal storage.
 I have decided doing multistage dockerfile for storage and organization reasons
 The first stage gets the necessary files from the relative context and installing both dependencies and devDependencies. i have decided doing npm install and not clean install for the reason mentioned above about the developer experience.
 Right after this i ran the npm run build command which executes the build script in the package.json file which actually creates a dist folder and converting the typescript files into final javascript files.
+
+I do wanna mention that there are alot of good ways for defining a dockerfile, using or not a .dockerignore, multistage or one stage, installing the dependencies once and moving them to the next stage or installing them twice. I have decided using both .dockerignore, multistage and installing the deps twice because i wanted to maintain storage reasons of excluding the unwanted typescript files and also when you assign the --production flag you can minimize the needed dependencies too if they have a feature for that.
 
 Now we can move into the second stage. same image.
 Now copying the new files javascript files and the packages files.
