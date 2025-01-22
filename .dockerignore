@@ -1,0 +1,6 @@
+dist
+.vscode/launch.json
+.gitignore
+readme.md
+Dockerfile
+.dockerignore
