@@ -5,6 +5,7 @@ Hey!
 I have created both Dockerfile and .dockerignore files
 In the .dockerignore file i decided to add all the .gitignore files and to add the .dockerignore and Dockerfile files.
 After doing that i decided to EXCLUDE the node_modules file from the .dockerignore file so it will be easier and faster for developers to dockerize their applications if the would like to.
+I do want to mention that i have changed the package.json dependencies because there were unused dependencies and also the typescript were in the dependencies and not the devDependencies which was costing alot of storage for the image.
 
 Now for the Dockerfile. Was thinking about using bitnami node image but decided the regular one becuase it is not a complex application. chose lts-slim tag for stabilty and storage reasons.
 I have decided doing multistage dockerfile for storage and organization reasons
@@ -29,3 +30,7 @@ And now we'll build the image with a build arg `docker build -t test --build-arg
 ![Alt text](Assets/arg.png "With Argument")
 
 For entrypoint I just ran the new javascript main file.
+
+As you can see there is only 14MB diff of dependencies and code instead of 150MB+ if done uncorrectly
+
+![Alt text](Assets/size.png "Size")
