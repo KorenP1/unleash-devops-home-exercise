@@ -1,3 +1,3 @@
 locals {
-  environment   = "unleash-exercise-${var.environment}"
+  environment = "unleash-exercise-${var.environment}"
 }

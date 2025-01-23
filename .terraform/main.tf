@@ -13,7 +13,7 @@ provider "aws" {
 
 module "VPC" {
   source = "./modules/VPC"
-  name   = "${local.environment}"
+  name   = local.environment
 }
 
 module "S3" {
@@ -23,7 +23,7 @@ module "S3" {
 
 module "ECS" {
   source      = "./modules/ECS"
-  name        = "${local.environment}"
+  name        = local.environment
   cpu         = 256
   memory      = 512
   image       = "docker.io/korenp/unleash-exercise"
