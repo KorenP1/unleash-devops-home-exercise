@@ -23,7 +23,7 @@ module "S3" {
 
 module "ECS" {
   source      = "./modules/ECS"
-  name        = local.bucket_name
+  name        = local.environment
   cpu         = 256
   memory      = 512
   image       = "docker.io/korenp/unleash-exercise"

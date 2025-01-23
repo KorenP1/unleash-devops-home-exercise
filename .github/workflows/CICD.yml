@@ -3,6 +3,9 @@ name: CICD
 on:
   push:
     branches: [ "master" ]
+
+concurrency:
+  group: CICD
     
 jobs:
   CI:
@@ -51,19 +54,23 @@ jobs:
       continue-on-error: true
       with:
         name: terraform.tfstate
+        run-id: ${{ vars.LATEST_ARTIFACT_RUN_ID }}
 
     - name: Terraform Apply
       env:
         AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-        TF_LOG: INFO
-
-        TF_VAR_environment: production
-        TF_VAR_bucket_name: production-bucket
+        TF_VAR_environment: '"production"'
+        TF_VAR_bucket_name: '"production-bucket"'
       run: terraform apply -auto-approve
 
     - uses: actions/upload-artifact@v4
       with:
         name: terraform.tfstate
         path: .terraform/terraform.tfstate
+
+    - name: Update LATEST_ARTIFACT_RUN_ID Variable
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh variable set LATEST_ARTIFACT_RUN_ID --body "${{ github.run_id }}"
