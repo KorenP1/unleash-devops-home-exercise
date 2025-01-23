@@ -46,11 +46,16 @@ jobs:
     - name: Terraform Validate
       run: terraform validate
 
+    - name: Download Terraform State Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: terraform.tfstate
+
     - name: Terraform Apply
       env:
         AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: terraform apply -auto-approve
+      run: ls -l && pwd
 
     - uses: actions/upload-artifact@v4
       with:
