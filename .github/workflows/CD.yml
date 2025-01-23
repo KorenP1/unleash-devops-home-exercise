@@ -1,5 +1,4 @@
-name: Terraform Apply
-
+name: CICD
 on:
   push:
     branches: [ "master" ]
