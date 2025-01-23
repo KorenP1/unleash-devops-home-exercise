@@ -45,7 +45,7 @@ jobs:
       run: terraform init
 
     - name: Terraform Format
-      run: terraform fmt -check
+      run: terraform fmt -recursive -check
 
     - name: Terraform Validate
       run: terraform validate
@@ -63,7 +63,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
         ENVIRONMENT: production
-        BUCKET_NAME: korper-bucket
+        BUCKET_NAME: production-bucket
       run: terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME
 
     - name: Terraform Output
