@@ -56,6 +56,9 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+        TF_VAR_environment: "production"
+        TF_VAR_bucket_name: "production-bucket"
       run: terraform apply -auto-approve && ls -la && pwd
 
     - uses: actions/upload-artifact@v4
