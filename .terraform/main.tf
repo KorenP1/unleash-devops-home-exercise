@@ -18,17 +18,17 @@ module "VPC" {
 
 module "S3" {
   source      = "./modules/S3"
-  bucket_name = "${var.bucket_name}-${random_string.suffix.result}"
+  bucket_name = local.bucket_name
 }
 
 module "ECS" {
   source      = "./modules/ECS"
-  name        = local.environment
+  name        = local.bucket_name
   cpu         = 256
   memory      = 512
   image       = "docker.io/korenp/unleash-exercise"
   port        = 3000
   replicas    = 1
   subnet_id   = module.VPC.subnet_id
-  bucket_name = "${var.bucket_name}-${random_string.suffix.result}"
+  bucket_name = local.bucket_name
 }
