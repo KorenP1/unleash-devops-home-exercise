@@ -1,1 +1,2 @@
-environment = "production"
+environment = "some-environment"
+bucket_name = "some-bucket"
