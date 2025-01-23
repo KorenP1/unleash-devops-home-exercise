@@ -47,4 +47,4 @@ jobs:
       run: terraform validate
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve
+      run: echo $AWS_ACCESS_KEY_ID
