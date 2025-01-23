@@ -44,5 +44,6 @@ resource "aws_ecs_service" "main" {
 
   network_configuration {
     subnets = [var.subnet_id]
+    assign_public_ip = true
   }
 }
