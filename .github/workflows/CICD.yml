@@ -59,9 +59,9 @@ jobs:
 
         TF_VAR_environment: "production"
         TF_VAR_bucket_name: "production-bucket"
-      run: terraform apply -auto-approve && ls -la && pwd
+      run: terraform apply -auto-approve
 
     - uses: actions/upload-artifact@v4
       with:
         name: terraform.tfstate
-        path: ./terraform.tfstate
+        path: .terraform/terraform.tfstate
