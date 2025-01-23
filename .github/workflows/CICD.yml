@@ -55,7 +55,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: ls -l && pwd
+      run: ls -la && pwd
 
     - uses: actions/upload-artifact@v4
       with:
