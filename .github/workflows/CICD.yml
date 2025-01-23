@@ -62,9 +62,9 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-        environment: production
-        bucket_name: production-bucket
-      run: terraform apply -auto-approve -var environment=$environment -var bucket_name=$bucket_name
+        ENVIRONMENT: production
+        BUCKET_NAME: production-bucket
+      run: terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME
 
     - uses: actions/upload-artifact@v4
       with:
@@ -73,5 +73,5 @@ jobs:
 
     - name: Update LATEST_ARTIFACT_RUN_ID Variable
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh variable set LATEST_ARTIFACT_RUN_ID --body "${{ github.run_id }}"
