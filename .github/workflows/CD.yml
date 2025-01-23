@@ -1,11 +1,11 @@
-name: CICD
+name: CD
+
 on:
   push:
     branches: [ "master" ]
     
 jobs:
   CD:
-    needs: CI
     runs-on: ubuntu-latest
 
     steps:
