@@ -69,9 +69,6 @@ jobs:
         BUCKET_NAME: production-bucket
       run: terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME
 
-    - name: Terraform Output
-      run: terraform output
-
     - uses: actions/upload-artifact@v4
       with:
         name: terraform.tfstate

@@ -4,7 +4,7 @@ resource "aws_ecs_cluster" "main" {
 
 resource "aws_ecs_task_definition" "main" {
   family                   = "main"
-  network_mode             = "awsvpc"
+  network_mode             = "host"
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.cpu
   memory                   = var.memory
