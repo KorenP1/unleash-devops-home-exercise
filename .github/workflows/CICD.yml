@@ -63,7 +63,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
         ENVIRONMENT: production
-        BUCKET_NAME: production-bucket
+        BUCKET_NAME: korper-bucket
       run: terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME
 
     - uses: actions/upload-artifact@v4
