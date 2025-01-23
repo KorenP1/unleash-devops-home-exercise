@@ -73,5 +73,5 @@ jobs:
 
     - name: Update LATEST_ARTIFACT_RUN_ID Variable
       env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_ENTERPRISE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh variable set LATEST_ARTIFACT_RUN_ID --body "${{ github.run_id }}"
