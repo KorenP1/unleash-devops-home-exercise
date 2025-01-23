@@ -38,6 +38,11 @@ variable "subnet_id" {
   description = "Subnet ID"
 }
 
+variable "security_group_id" {
+  type        = string
+  description = "Security Group ID"
+}
+
 variable "bucket_name" {
   type        = string
   default     = "my-test-bucket"

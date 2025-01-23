@@ -4,7 +4,7 @@ resource "aws_ecs_cluster" "main" {
 
 resource "aws_ecs_task_definition" "main" {
   family                   = "main"
-  network_mode             = "host"
+  network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.cpu
   memory                   = var.memory
@@ -44,6 +44,7 @@ resource "aws_ecs_service" "main" {
 
   network_configuration {
     subnets          = [var.subnet_id]
+    security_groups  = [var.security_group_id]
     assign_public_ip = true
   }
 }
