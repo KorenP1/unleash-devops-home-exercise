@@ -9,4 +9,6 @@ Then i created a job which does the following steps while using external predefi
 2. Logging in to my dockerhub user and using a precreated token for it.
 3. Building and Pushing the image
 
-I am mentioning that i have seen that there is no requirement for version control so i chose not doing it and pushing to latest for now.
+I am mentioning that i have seen that there is no requirement for version control so i chose not doing it and pushing to latest tag for now.
+
+![Alt text](Assets/successful-pipeline.png "Successful Pipeline")
