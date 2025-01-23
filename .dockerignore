@@ -4,3 +4,6 @@ dist
 readme.md
 Dockerfile
 .dockerignore
+Answers
+.github
+.git
