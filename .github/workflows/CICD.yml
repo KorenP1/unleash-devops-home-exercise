@@ -67,7 +67,9 @@ jobs:
         ENVIRONMENT: production
         BUCKET_NAME: production-bucket
         IMAGE_TAG: ${{ vars.NEXT_VERSION }}
-      run: terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME -var image_tag=$IMAGE_TAG
+      run: |
+        terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME -var image_tag=$IMAGE_TAG
+        aws ec2 describe-network-interfaces --network-interface-ids $(aws ecs describe-tasks --cluster $(terraform output local.environment) --tasks $(aws ecs list-tasks --cluster $(terraform output local.environment) --query "taskArns[-1]" --output text) --query "tasks[0].attachments[0].details[?name=='networkInterfaceId'].value" --output text) --query "NetworkInterfaces[0].Association.PublicIp" --output text
 
     - uses: actions/upload-artifact@v4
       with:

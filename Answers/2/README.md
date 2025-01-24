@@ -11,5 +11,6 @@ Then i created a job which does the following steps while using external predefi
 3. Building and Pushing the image
 
 I am mentioning that i have seen that there is no requirement for version control so i chose not doing it and pushing to latest tag for now.
+Ill change that later.
 
 ![Alt text](Assets/successful-pipeline.png "Successful Pipeline")
