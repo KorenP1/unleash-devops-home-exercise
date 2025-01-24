@@ -23,9 +23,14 @@ resource "aws_iam_role_policy" "main" {
     Version = "2012-10-17"
     Statement = [
       {
-        Action   = ["s3:ListBucket", "s3:GetObject", "s3:GetObjectAttributes"]
+        Action   = ["s3:ListBucket"]
         Effect   = "Allow"
-        Resource = var.bucket_arn
+        Resource = [var.bucket_arn]
+      },
+      {
+        Action   = ["s3:GetObject"]
+        Effect   = "Allow"
+        Resource = ["${var.bucket_arn}/*"]
       }
     ]
   })
