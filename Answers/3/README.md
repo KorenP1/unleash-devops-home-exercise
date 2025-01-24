@@ -23,7 +23,7 @@ For the AWS resources. I created those resources.
 The vpc has internet gateway, a route table that connects every non local traffic to the ig and a public subnet, no private subnet.
 The security group is allowing ingress traffic to the related port, by default 3000, also to be able to pull dockerhub images there is an egress rule allowing 443 port traffic for every ip, 0.0.0.0/0 cidr, because dockerhub has no static ip and sg doesnt support dns policies.
 regular s3 bucket.
-IAM role that can be assumed only for ecs-tasks.amazonaws.com resources. the iam role give ListObject permissions to the related bucket.
+IAM role that can be assumed only for ecs-tasks.amazonaws.com resources. the iam role give permissions to the related bucket. I will mention that after some trying and assesing the needed permissions are ListBucket for BucketARN and GetObject for BucketARN/*, which is weird because i thought it will need only GetObject action permissions because we do specify a specific file name in the request but I guess that is how the javascript @aws-sdk/client-s3 S3 headObject function works, might not be ideal for permissions in our use case. 
 ECS cluster. Task Definition with one container and auto assignment of public ip with configurable cpu, memory, image, environment variables. An ECS Service that executes the task definition.
 
 Limitations:
