@@ -10,6 +10,12 @@ variable "bucket_name" {
   description = "S3 Bucket Name"
 }
 
+variable "image_tag" {
+  type        = string
+  default     = "latest"
+  description = "Image Tag"
+}
+
 resource "random_string" "suffix" {
   length  = 8
   special = false

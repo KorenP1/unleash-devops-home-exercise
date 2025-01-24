@@ -40,6 +40,7 @@ module "ECS" {
   cpu               = 256
   memory            = 512
   image             = "docker.io/korenp/unleash-exercise"
+  image_tag         = var.image_tag
   port              = 3000
   replicas          = 1
   subnet_id         = module.VPC.subnet_id

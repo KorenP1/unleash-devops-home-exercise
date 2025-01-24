@@ -21,6 +21,12 @@ variable "image" {
   description = "Container Image"
 }
 
+variable "image_tag" {
+  type        = string
+  default     = "latest"
+  description = "Container Image Tag"
+}
+
 variable "port" {
   type        = number
   default     = 3000

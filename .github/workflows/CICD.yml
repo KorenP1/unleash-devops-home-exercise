@@ -24,8 +24,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: docker.io/korenp/unleash-exercise
-
+        tags: docker.io/korenp/unleash-exercise:${{ vars.NEXT_VERSION }}
 
   CD:
     needs: CI
@@ -67,14 +66,17 @@ jobs:
 
         ENVIRONMENT: production
         BUCKET_NAME: production-bucket
-      run: terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME
+        IMAGE_TAG: ${{ vars.NEXT_VERSION }}
+      run: terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME -var image_tag=$NEXT_VERSION
 
     - uses: actions/upload-artifact@v4
       with:
         name: terraform.tfstate
         path: .terraform/terraform.tfstate
 
-    - name: Update LATEST_ARTIFACT_RUN_ID Variable
+    - name: Update LATEST_ARTIFACT_RUN_ID, NEXT_VERSION Variables
       env:
         GITHUB_TOKEN: ${{ secrets.VARIABLES_ACCESS_TOKEN }}
-      run: gh variable set LATEST_ARTIFACT_RUN_ID --body "${{ github.run_id }}"
+      run: |
+        gh variable set LATEST_ARTIFACT_RUN_ID --body "${{ github.run_id }}"
+        gh variable set NEXT_VERSION --body "`echo ${{ vars.NEXT_VERSION }} | awk -F . '{print $1"."$2"."$3+1}'`"
