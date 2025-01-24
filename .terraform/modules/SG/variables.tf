@@ -1,7 +1,7 @@
 variable "port" {
   type        = number
   default     = 3000
-  description = "Allowed Port"
+  description = "Allowed Ingress Port"
 }
 
 variable "vpc_id" {

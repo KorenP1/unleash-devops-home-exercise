@@ -24,7 +24,9 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: docker.io/korenp/unleash-exercise:${{ vars.NEXT_VERSION }}
+        tags: |
+          docker.io/korenp/unleash-exercise:latest
+          docker.io/korenp/unleash-exercise:${{ vars.NEXT_VERSION }}
 
   CD:
     needs: CI
