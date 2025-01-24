@@ -9,7 +9,7 @@ For the state management i decided using the github artifacts and not external b
 Every successful run i uploaded the terraform.tfstate file as artifact and also updated a repository variable of the last successful workflow run id so I can keep track of the artifact.
 Then every run also downloads the last terraform.tfstate file before applying the IaC in order to know what changes supposed to be done. Added some more files to .dockerignore and .gitignore.
 
-In Targil 2 i used latest tag and i changed to using versioning system because i found out it is kinda hard for maintaining versions in aws ecs fargate. The versioning is by another repository variable that is increased by 1 patch every successful commit. for minor and major increasement a manual variable modifying is required.
+In Targil 2 i used latest tag and i changed to using versioning system because i found out it is kinda hard for maintaining versions in aws ecs fargate. The versioning is by another repository variable that is increased by 1 patch every successful commit. for minor and major increasement a manual variable modifying is required. Now pushing to a version tag and also latest tag to keep track with the versioning.
 
 I used terraform as my IaC provider. I am using different best practices of file structures and modules.
 
