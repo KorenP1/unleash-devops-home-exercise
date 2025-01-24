@@ -27,4 +27,4 @@ IAM role that can be assumed only for ecs-tasks.amazonaws.com resources. the iam
 ECS cluster. Task Definition with one container and auto assignment of public ip with configurable cpu, memory, image, environment variables. An ECS Service that executes the task definition.
 
 Limitations:
-There is no elastic ip so the ip might change every successful commit, i thought i created alot of resources already so i didnt do it for now. It is verbosing. It is verbosing it in the CICD console with a very long oneliner.
+There is no elastic ip so the ip might change every successful commit, i thought i created alot of resources already so i didnt do it for now. It is verbosing.
