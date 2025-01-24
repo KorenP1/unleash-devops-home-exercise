@@ -48,3 +48,8 @@ variable "bucket_name" {
   default     = "my-test-bucket"
   description = "S3 Bucket Name"
 }
+
+variable "iam_arn" {
+  type        = string
+  description = "IAM role arn to connect to the task definition"
+}

@@ -3,11 +3,12 @@ resource "aws_ecs_cluster" "main" {
 }
 
 resource "aws_ecs_task_definition" "main" {
-  family                   = "main"
+  family                   = var.name
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.cpu
   memory                   = var.memory
+  task_role_arn            = var.iam_arn
 
   container_definitions = jsonencode([
     {

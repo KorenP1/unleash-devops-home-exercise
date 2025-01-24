@@ -28,6 +28,12 @@ module "S3" {
   bucket_name = local.bucket_name
 }
 
+module "IAM" {
+  source     = "./modules/IAM"
+  iam_name   = local.environment
+  bucket_arn = module.S3.bucket_arn
+}
+
 module "ECS" {
   source            = "./modules/ECS"
   name              = local.environment
@@ -39,4 +45,5 @@ module "ECS" {
   subnet_id         = module.VPC.subnet_id
   security_group_id = module.SG.security_group_id
   bucket_name       = local.bucket_name
+  iam_arn           = module.IAM.iam_arn
 }
