@@ -67,7 +67,7 @@ jobs:
         ENVIRONMENT: production
         BUCKET_NAME: production-bucket
         IMAGE_TAG: ${{ vars.NEXT_VERSION }}
-      run: terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME -var image_tag=$NEXT_VERSION
+      run: terraform apply -auto-approve -var environment=$ENVIRONMENT -var bucket_name=$BUCKET_NAME -var image_tag=$IMAGE_TAG
 
     - uses: actions/upload-artifact@v4
       with:
