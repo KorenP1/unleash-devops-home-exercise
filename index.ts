@@ -27,7 +27,7 @@ app.get('/check-file', async (req: Request, res: Response) => {
 
   try {
     await s3.headObject(params);
-    res.status(200).send(`The file "${fileName}" exists in the bucket. test`);
+    res.status(200).send(`The file "${fileName}" exists in the bucket.`);
   } catch (error: any) {
     if (error.name === 'NotFound') {
       res.status(404).send(`The file "${fileName}" does not exist in the bucket.`);
