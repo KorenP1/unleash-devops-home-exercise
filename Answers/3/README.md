@@ -28,3 +28,6 @@ ECS cluster. Task Definition with one container and auto assignment of public ip
 
 Limitations:
 There is no elastic ip so the ip might change every successful commit, i thought i created alot of resources already so i didnt do it for now. It is verbosing.
+
+![Alt text](Assets/exists.png "File Exists")
+![Alt text](Assets/notexists.png "File Does Not Exist")
